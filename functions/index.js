@@ -5,16 +5,20 @@ const app = express()
 // const port = process.env.PORT || 5000; //Line 3
 
 // app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
+const cors = require('cors')
 
-app.get('*', (req, res) => {
+app.use(cors());
+
+app.get('/api', (req, res) => {
   res.send("Hello from the API")
 })
 
 // create a GET route
 app.get('/mailgun', (req, res) => { 
-  res.send('mailgun message from INDEX.JS' ); 
+  res.send({ message: "mailgun message from INDEX.JS" }); 
 }); 
 
+exports.api = functions.https.onRequest(app)
 
 // const mailgun = require("mailgun-js");
 // const DOMAIN = 'sandbox992167bb9fe442529db5bf04a7acac26.mailgun.org';
@@ -31,4 +35,3 @@ app.get('/mailgun', (req, res) => {
 // 	console.log(body);
 // });
 
-exports.api = functions.https.onRequest(app)

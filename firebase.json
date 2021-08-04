@@ -14,7 +14,12 @@
       {
         "source": "/api",
         "function": "api"
+      },
+      {
+        "source": "/mailgun",
+        "function": "api"
       }
+     
     ]
   }
 }
